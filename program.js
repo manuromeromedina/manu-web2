@@ -1,34 +1,55 @@
 // Asociar cada ícono con un sonido
 const sounds = {
-    herida: '/audios/proposito.mp3',
-    arriesgarse: '/audios/discernimiento.mp3',
-    mision: '/audios/mision.mp3',
-    tuyyo: '/audios/libertad.mp3',
-    autoconocimiento: '/audios/herida.mp3',
-    busqueda: '/audios/autoconocimiento.mp3',
-    perdido: '/audios/perdido.mp3',
+    herida: '/audio/tinta90.mp3',
+    arriesgarse: '/audio/arriesgarse.mp3',
+    mision: '/audio/pa.mp3',
+    tuyyo: '/audio/tuyyo.mp3',
+    autoconocimiento: '/audio/autoconocimiento.mp3',
+    busqueda: '/audio/busqueda.mp3',
+    perdido: '/audio/perdido.mp3',
 };
+
+// Objeto para almacenar el estado del audio
+let currentAudio = null;
 
 // Añadir eventos de clic a cada ícono
 document.querySelectorAll('.icono').forEach(icon => {
     icon.addEventListener('click', () => {
         const soundId = icon.id; // Obtiene el ID del ícono
-        const audio = new Audio(sounds[soundId]); // Crea un objeto Audio
-        audio.play(); // Reproduce el sonido
+        const soundPath = sounds[soundId]; // Obtiene la ruta del sonido
+
+        if (!soundPath) return; // Si no hay sonido asociado, no hacer nada
+
+        // Si ya hay un audio reproduciéndose
+        if (currentAudio && !currentAudio.paused) {
+            currentAudio.pause(); // Detiene el audio
+            currentAudio.currentTime = 0; // Reinicia al inicio
+            // Si el mismo ícono fue clicado, no reproducirlo de nuevo
+            if (currentAudio.src.includes(soundPath)) {
+                currentAudio = null; // Resetea el estado del audio
+                return;
+            }
+        }
+
+        // Crea un nuevo audio y lo reproduce
+        currentAudio = new Audio(soundPath);
+        currentAudio.play();
     });
 });
 
+// Texto desplazándose (si es necesario para otro efecto)
 window.onload = function () {
-    const scrollingTextContainer = document.getElementById('scrollingText');
-    const text = ' 🦋 MARZO 2025 🦋 🦋 MARZO 2025 🦋 🦋 MARZO 2025 🦋 ';
-    
-    // Duplicamos el texto para hacer que el loop sea continuo
-    scrollingTextContainer.innerHTML = `<span>${text.repeat(5)}</span>`; // Repite el texto varias veces para el efecto de loop
+    const scrollingTextContainer1 = document.getElementById('scrollingText');
+    const scrollingTextContainer2 = document.getElementById('scrollingText2');
 
-    // Asegurarse de reiniciar el audio cuando termine
-    var sound = document.getElementById("sound");
-    sound.addEventListener("ended", function() {
-        sound.currentTime = 0; // Reinicia al inicio del audio
-        sound.play(); // Reproduce de nuevo el audio
-    });
+    const text1 = ' 🦋 MARZO 2025 🦋 🦋 MARZO 2025 🦋 🦋 MARZO 2025 🦋 ';
+    const text2 = ' TOCAR LOS ICONOS ... ';
+
+    if (scrollingTextContainer1) {
+         scrollingTextContainer1.innerHTML = `<span>${text1.repeat(5)}</span>`;
+    } 
+
+    if (scrollingTextContainer2) {
+        scrollingTextContainer2.innerHTML = `<span>${text2.repeat(15)}</span>`;
+    }
 };
