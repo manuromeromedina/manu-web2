@@ -99,12 +99,12 @@ body {
 }
 
 .icono:nth-child(4) {
-    bottom: 30%;
-    right: 35%;
+    bottom: 15%;
+    right: 40%;
 }
 
 .icono:nth-child(5) {
-    top: 80%;
+    top: 70%;
     left: 3%;
 }
 
@@ -118,3 +118,33 @@ body {
     right: 45%;
 }
 
+/* Estilo para el texto desplazable */
+.scrolling-text {
+    position: absolute;
+    top: 20px; /* Parte superior de la pantalla */
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+    font-size: 30px;
+    color: black;
+    font-weight: bold;
+    z-index: 1;
+  }
+  
+  #scrollingText span {
+    display: inline-block;
+    padding-right: 0; /* Añadimos un espacio para que el texto se desplace */
+    animation: scroll-text 50s linear infinite;
+  }
+  
+  /* Animación de desplazamiento del texto */
+  @keyframes scroll-text {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
