@@ -7,6 +7,7 @@ const sounds = {
     autoconocimiento: '/audio/autoconocimiento.mp3',
     busqueda: '/audio/busqueda.mp3',
     perdido: '/audio/perdido.mp3',
+    cumple: '/audio/cumple.mp3'
 };
 
 // Objeto para almacenar el estado del audio
