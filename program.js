@@ -1,13 +1,13 @@
 // Asociar cada ícono con un sonido
 const sounds = {
     herida: '/audio/tinta90.mp3',
-    arriesgarse: '/audio/arriesgarse.mp3',
+    arriesgarse: '/audio/lluvia.mp3',
     mision: '/audio/pa.mp3',
-    tuyyo: '/audio/tuyyo.mp3',
-    autoconocimiento: '/audio/autoconocimiento.mp3',
-    busqueda: '/audio/busqueda.mp3',
-    perdido: '/audio/perdido.mp3',
-    cumple: '/audio/cumple.mp3'
+    tuyyo: '/audio/siren.mp3', 
+    autoconocimiento: '/audio/carneyhueso.mp3', 
+    busqueda: '/audio/niños.mp3',
+    perdido: '/audio/naturaleza.mp3', 
+    cumple: '/audio/base.mp3' 
 };
 
 // Objeto para almacenar el estado del audio
