@@ -1,31 +1,34 @@
 body {
     margin: 0;
     padding: 0;
-    background-image: url('/paredblanca.jfif'); /* Mantiene tu imagen de fondo */
+    background-image: url('/paredblanca.jfif');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Fija la imagen para que no se mueva al hacer scroll */
+    background-attachment: fixed;
     font-family: Arial, sans-serif;
-    height: 100vh; /* Para asegurar que ocupa toda la pantalla */
-    position: relative; /* Necesario para posicionar elementos dentro del body */
+    height: 100vh;
+    position: relative;
 }
 
+/* Contenedor de los iconos usando flexbox para una distribución flexible */
 .contenedor-iconos {
-    position: relative; /* Relativo al body */
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap; /* Permite que los iconos se ajusten a nuevas líneas */
+    justify-content: center; /* Centra los iconos */
+    align-items: center; /* Alinea los iconos verticalmente */
+    position: relative;
     height: 100%;
 }
 
-
 /* Estilo general de los iconos */
 .icono {
-    position: absolute; /* Posición independiente para cada ícono */
     text-align: center;
     color: black;
     font-size: 16px;
     font-style: italic;
     font-weight: lighter;
-   
+    margin: 10px; /* Espacio entre los iconos */
+    flex: 0 1 80px; /* Flexibilidad para que cada icono ocupe un espacio pequeño pero adaptable */
 }
 
 .icono img {
@@ -43,51 +46,34 @@ body {
     margin-top: 8px;
 }
 
-/* Posiciones específicas para los íconos */
-.icono:nth-child(1) {
-    top: 10%;
-    left: 20%;
+/* Media Queries: Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .contenedor-iconos {
+        flex-direction: column; /* Apila los iconos verticalmente en pantallas más pequeñas */
+        align-items: center; /* Centra los iconos */
+    }
+
+    .icono {
+        flex: 0 1 60px; /* Ajusta el tamaño de los iconos en pantallas pequeñas */
+        margin: 15px; /* Añade más espacio entre los iconos */
+    }
 }
 
-.icono:nth-child(2) {
-    top: 20%;
-    right: 15%;
-}
+/* Media Queries: Ajustes para pantallas más grandes */
+@media (min-width: 769px) {
+    .contenedor-iconos {
+        flex-direction: row; /* Alinea los iconos horizontalmente en pantallas más grandes */
+    }
 
-.icono:nth-child(3) {
-    top: 40%;
-    left: 30%;
-}
-
-.icono:nth-child(4) {
-    bottom: 15%;
-    right: 50%;
-}
-
-.icono:nth-child(5) {
-    top: 70%;
-    left: 3%;
-}
-
-.icono:nth-child(6) {
-    bottom: 10%;
-    right: 10%;
-}
-
-.icono:nth-child(7) {
-    bottom: 70%;
-    right: 45%;
-}
-
-.icono:nth-child(8) {
-    bottom: 40%;
-    right: 30%;
+    .icono {
+        flex: 0 1 150px; /* Iconos más grandes en pantallas grandes */
+    }
 }
 
 /* Estilo para el texto desplazable */
 .scrolling-text {
     position: absolute;
-    bottom: 20px; /* Parte superior de la pantalla */
+    bottom: 20px;
     left: 0;
     width: 100%;
     white-space: nowrap;
@@ -98,27 +84,26 @@ body {
     font-weight: bold;
     z-index: 1;
     font-style: italic;
-  }
-  
-  #scrollingText span {
+}
+
+#scrollingText span {
     display: inline-block;
-    padding-right: 0; /* Añadimos un espacio para que el texto se desplace */
+    padding-right: 0;
     animation: scroll-text 50s linear infinite;
-  }
-  
-  /* Animación de desplazamiento del texto */
-  @keyframes scroll-text {
+}
+
+@keyframes scroll-text {
     0% {
-      transform: translateX(100vw);
+        transform: translateX(100vw);
     }
     100% {
-      transform: translateX(-100vw);
+        transform: translateX(-100vw);
     }
-  }
+}
 
 .scrolling-text2 {
     position: absolute;
-    top: 20px; /* Parte superior de la pantalla */
+    top: 20px;
     left: 0;
     width: 100%;
     white-space: nowrap;
@@ -130,19 +115,9 @@ body {
     z-index: 1;
     font-style: italic;
 }
-  
+
 #scrollingText2 span {
     display: inline-block;
-    padding-right: 0; /* Añadimos un espacio para que el texto se desplace */
+    padding-right: 0;
     animation: scroll-text 40s linear infinite;
-}
-  
-  /* Animación de desplazamiento del texto */
-  @keyframes scroll-text {
-    0% {
-        transform: translateX(100vw);
-    }
-    100% {
-        transform: translateX(-100vw);
-    }
 }
