@@ -10,7 +10,6 @@ const sounds = {
     cumple: '/audio/base.mp3' 
 };
 
-// Objeto para almacenar el estado del audio
 let currentAudio = null;
 
 // Añadir eventos de clic a cada ícono
@@ -28,6 +27,7 @@ document.querySelectorAll('.icono').forEach(icon => {
             // Si el mismo ícono fue clicado, no reproducirlo de nuevo
             if (currentAudio.src.includes(soundPath)) {
                 currentAudio = null; // Resetea el estado del audio
+                icon.classList.remove('blink'); // Elimina los efectos de animación
                 return;
             }
         }
@@ -35,6 +35,14 @@ document.querySelectorAll('.icono').forEach(icon => {
         // Crea un nuevo audio y lo reproduce
         currentAudio = new Audio(soundPath);
         currentAudio.play();
+
+        // Agrega la clase de parpadeo y latido
+        icon.classList.add('blink');
+
+        // Desactiva el efecto de parpadeo y aumento cuando termine el sonido
+        currentAudio.addEventListener('ended', () => {
+            icon.classList.remove('blink'); // Elimina los efectos de animación
+        });
     });
 });
 
@@ -47,10 +55,11 @@ window.onload = function () {
     const text2 = ' TOCAR LOS ICONOS ... ';
 
     if (scrollingTextContainer1) {
-         scrollingTextContainer1.innerHTML = `<span>${text1.repeat(5)}</span>`;
-    } 
+        scrollingTextContainer1.innerHTML = `<span>${text1.repeat(5)}</span>`;
+    }
 
     if (scrollingTextContainer2) {
         scrollingTextContainer2.innerHTML = `<span>${text2.repeat(15)}</span>`;
     }
 };
+

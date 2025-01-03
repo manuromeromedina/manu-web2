@@ -7,6 +7,7 @@ body {
     background-attachment: fixed;
     font-family: Arial, sans-serif;
     height: 100vh;
+    overflow: hidden;
     position: relative;
 }
 
@@ -18,8 +19,9 @@ body {
     justify-items: center; /* Centra los iconos en cada celda */
     align-items: center; /* Alinea los iconos verticalmente */
     position: relative;
-    height: 100%;
+    height: 100%; /* Asegura que el contenedor ocupe el 100% de la altura disponible */
     padding: 20px;
+    overflow: hidden; /* Evita barras de desplazamiento dentro del contenedor */
 }
 
 /* Estilo general de los iconos */
@@ -29,21 +31,42 @@ body {
     font-size: 16px;
     font-style: italic;
     font-weight: lighter;
+    transition: transform 0.3s ease; /* Para animar el tamaño del ícono */
 }
 
 .icono img {
     width: 80px;
     height: 80px;
     cursor: pointer;
-    transition: transform 0.2s;
+    transition: transform 0.2s ease; /* Animación para el tamaño */
 }
 
-.icono img:hover {
-    transform: scale(1.1);
+/* Animación de parpadeo */
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 
-.icono p {
-    margin-top: 8px;
+/* Efecto de "latido" */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2); /* Aumenta ligeramente el tamaño */
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Clase para aplicar el parpadeo y el latido */
+.icono.blink img {
+    animation: blink 0.5s linear infinite, heartbeat 1s ease infinite; /* Parpadeo y aumento de tamaño */
 }
 
 /* Media Queries: Ajustes para pantallas móviles (menos de 768px) */
@@ -69,11 +92,10 @@ body {
         flex: 0 1 150px; /* Iconos más grandes en pantallas grandes */
     }
 }
-
 /* Estilo para el texto desplazable */
 .scrolling-text {
     position: absolute;
-    bottom: 20px;
+    bottom: 50px;
     left: 0;
     width: 100%;
     white-space: nowrap;
@@ -82,7 +104,7 @@ body {
     font-size: 15px;
     color: black;
     font-weight: bold;
-    z-index: 1;
+    z-index: 2; /* Asegura que el texto se muestre sobre otros elementos */
     font-style: italic;
 }
 
@@ -112,12 +134,21 @@ body {
     font-size: 20px;
     color: black;
     font-weight: bold;
-    z-index: 1;
+    z-index: 2; /* Asegura que el texto se muestre sobre otros elementos */
     font-style: italic;
 }
 
 #scrollingText2 span {
     display: inline-block;
     padding-right: 0;
-    animation: scroll-text 40s linear infinite;
+    animation: scroll-text2 40s linear infinite;
+}
+
+@keyframes scroll-text2 {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100vw);
+    }
 }
