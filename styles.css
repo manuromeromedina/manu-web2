@@ -10,14 +10,16 @@ body {
     position: relative;
 }
 
-/* Contenedor de los iconos usando flexbox para una distribución flexible */
+/* Contenedor de los iconos usando grid para disposición controlada */
 .contenedor-iconos {
-    display: flex;
-    flex-wrap: wrap; /* Permite que los iconos se ajusten a nuevas líneas */
-    justify-content: center; /* Centra los iconos */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Se adapta automáticamente */
+    gap: 20px; /* Espacio entre los iconos */
+    justify-items: center; /* Centra los iconos en cada celda */
     align-items: center; /* Alinea los iconos verticalmente */
     position: relative;
     height: 100%;
+    padding: 20px;
 }
 
 /* Estilo general de los iconos */
@@ -27,8 +29,6 @@ body {
     font-size: 16px;
     font-style: italic;
     font-weight: lighter;
-    margin: 10px; /* Espacio entre los iconos */
-    flex: 0 1 80px; /* Flexibilidad para que cada icono ocupe un espacio pequeño pero adaptable */
 }
 
 .icono img {
@@ -46,23 +46,23 @@ body {
     margin-top: 8px;
 }
 
-/* Media Queries: Ajustes para dispositivos móviles */
+/* Media Queries: Ajustes para pantallas móviles (menos de 768px) */
 @media (max-width: 768px) {
     .contenedor-iconos {
-        flex-direction: column; /* Apila los iconos verticalmente en pantallas más pequeñas */
-        align-items: center; /* Centra los iconos */
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Los iconos se ajustan a columnas más pequeñas */
+        gap: 15px; /* Espacio entre los iconos en móviles */
     }
 
     .icono {
         flex: 0 1 60px; /* Ajusta el tamaño de los iconos en pantallas pequeñas */
-        margin: 15px; /* Añade más espacio entre los iconos */
     }
 }
 
-/* Media Queries: Ajustes para pantallas más grandes */
+/* Media Queries: Ajustes para pantallas grandes (más de 769px) */
 @media (min-width: 769px) {
     .contenedor-iconos {
-        flex-direction: row; /* Alinea los iconos horizontalmente en pantallas más grandes */
+        grid-template-columns: repeat(4, 1fr); /* Cuatro iconos por fila */
+        gap: 20px; /* Espacio entre los iconos */
     }
 
     .icono {
